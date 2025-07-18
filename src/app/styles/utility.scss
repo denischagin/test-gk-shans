@@ -44,6 +44,9 @@
     &:disabled {
       background-color: map-get($colors, neutral, 500);
     }
+    &.button_disabled {
+      background-color: map-get($colors, neutral, 500);
+    }
   }
 
   &--var-outlined {
@@ -63,6 +66,12 @@
 
     &:hover {
       text-decoration: underline;
+    }
+    &:disabled {
+      color: map-get($colors, neutral, 500);
+    }
+    &.button_disabled {
+      color: map-get($colors, neutral, 500);
     }
   }
 

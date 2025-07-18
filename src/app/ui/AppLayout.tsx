@@ -7,7 +7,7 @@ export const AppLayout = () => {
   return (
     <div className={css.layout}>
       <Header />
-      <main className={`${css.main} container`}>
+      <main className={`container ${css.main}`}>
         <Outlet />
       </main>
       <Footer />

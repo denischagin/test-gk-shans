@@ -1,51 +1,81 @@
 import React from 'react'
-import css from './ProductCard.module.scss'
 import type { TProduct } from '@/entities/product'
+import { Card } from '@/shared/ui'
 
-type ProductCardProps = {
-  product: TProduct
-  className?: string
+export type ProductCardProps = TProduct & {
+  inCart: boolean
+  inFavorites: boolean
+  onAddToFavorites: (product: TProduct) => void
+  onRemoveFromFavorites: (productId: number) => void
+  onAddToCart: (product: TProduct) => void
+  onRemoveFromCart: (productId: number) => void
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({
-  product,
-  className,
-}) => {
-  const formattedPrice = new Intl.NumberFormat('ru-RU', {
-    style: 'currency',
-    currency: 'RUB',
-  }).format(product.price_discount)
-
-  const isDiscount = product.price !== product.price_discount
-
-  const slicedName = product.name.slice(0, 40) + '...'
+export const ProductCard: React.FC<ProductCardProps> = (props) => {
+  const {
+    inCart,
+    inFavorites,
+    onAddToCart,
+    onRemoveFromCart,
+    onAddToFavorites,
+    onRemoveFromFavorites,
+    ...product
+  } = props
 
   return (
-    <article className={`${css.card} ${className || ''}`}>
-      <img
+    <Card>
+      <Card.Img
         src={product.preview_picture}
-        className={css.card__preview}
+        alt={product.name}
       />
-      <div className={css.card__content}>
-        <div className={css.card__price}>
-          <p className="text--size-xl text-primary-dark">{formattedPrice} </p>
-          {isDiscount && <p className={css.card__discount}>{product.price}</p>}
-        </div>
-        <h3 className="text--size-md">{slicedName}</h3>
-        <div className={css['card__actions']}>
-          <button
-            className="button button--var-filled button--size-small"
-            disabled={!product.available}
-          >
-            {product.available ? 'В корзину' : 'Отсутствует'}
-          </button>
-          {product.available && (
-            <button className="button button--var-text button--size-small">
-              В избранное
+
+      <Card.Content>
+        <Card.Price
+          price={product.price}
+          discountPrice={product.price_discount}
+        />
+
+        <Card.Title title={product.name} />
+
+        <Card.Actions>
+          {!product.available && (
+            <button
+              className="button button--var-filled button--size-small"
+              disabled
+            >
+              Отсутствует
             </button>
           )}
-        </div>
-      </div>
-    </article>
+          {product.available && (
+            <button
+              className={
+                'button button--var-filled button--size-small ' +
+                (inCart ? 'button_disabled' : '')
+              }
+              onClick={() =>
+                inCart ? onRemoveFromCart(product.id) : onAddToCart(product)
+              }
+            >
+              {inCart ? 'В корзине' : 'В корзину'}
+            </button>
+          )}
+          {product.available && (
+            <button
+              className={
+                'button button--var-text button--size-small ' +
+                (inFavorites ? 'button_disabled' : '')
+              }
+              onClick={() =>
+                inFavorites
+                  ? onRemoveFromFavorites(product.id)
+                  : onAddToFavorites(product)
+              }
+            >
+              {inFavorites ? 'В избранном' : 'В избранное'}
+            </button>
+          )}
+        </Card.Actions>
+      </Card.Content>
+    </Card>
   )
 }

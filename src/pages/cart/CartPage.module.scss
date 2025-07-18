@@ -1,0 +1,17 @@
+.cart {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+
+  &__panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: sticky;
+    right: 0;
+    top: 60px;
+    height: 100%;
+    background-color: white;
+    width: 300px;
+  }
+}
