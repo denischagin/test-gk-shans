@@ -8,5 +8,16 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
-  }, plugins: [react()],
+  },
+  plugins: [react()],
+  // обход ошибки cors
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://maxifoxy-testfront-4596.twc1.net',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
+  },
 })

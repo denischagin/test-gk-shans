@@ -1,3 +1,62 @@
-.header {
+@import '../../app/styles/variables.scss';
 
+.header {
+  background-color: map-get($colors, primary-dark);
+  padding: 0.2rem 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  &__title {
+    font-family: $font-family-accent;
+    font-size: 1rem;
+    font-weight: 700;
+    color: map-get($colors, neutral, 100);
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+
+  &__list {
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__item {
+    position: relative;
+  }
+
+  &__link {
+    color: map-get($colors, neutral, 100);
+    text-decoration: none;
+    font-family: $font-family-accent;
+    font-weight: 500;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &:hover {
+      color: map-get($colors, accent-light);
+    }
+  }
+
+  &__link_active {
+    color: map-get($colors, accent);
+  }
 }

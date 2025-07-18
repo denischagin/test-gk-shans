@@ -1,3 +1,5 @@
+import { cartSlice } from '@/entities/cart'
+import { baseApi } from '@/shared/api'
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import {
   useDispatch,
@@ -5,12 +7,15 @@ import {
   type TypedUseSelectorHook,
 } from 'react-redux'
 
-const rootReducer = combineReducers({})
+const rootReducer = combineReducers({
+  [baseApi.reducerPath]: baseApi.reducer,
+  [cartSlice.reducerPath]: baseApi.reducer,
+})
 
 export const store = configureStore({
   reducer: rootReducer,
-  //   middleware: getDefaultMiddleware =>
-  // getDefaultMiddleware().concat(baseApi.middleware, modeStorageMiddlware.middleware),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(baseApi.middleware),
 })
 
 export type RootState = ReturnType<typeof rootReducer>
