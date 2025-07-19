@@ -95,9 +95,9 @@
 .input {
   display: block;
   width: 100%;
-  padding: map-get($spacing, 2);
+  padding: map-get($spacing, 1) map-get($spacing, 2);
   font-family: $font-family-base;
-  border-radius: map-get($border-radius, small);
+  border-radius: map-get($border-radius, medium);
   transition: all 0.3s ease;
 
   &--var-outlined {

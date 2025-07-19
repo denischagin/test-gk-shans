@@ -2,11 +2,11 @@
 
 .header {
   background-color: map-get($colors, primary-dark);
-  padding: 0.2rem 2rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 100;
+  width: 100%;
 
   &__title {
     font-family: $font-family-accent;

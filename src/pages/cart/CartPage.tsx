@@ -1,11 +1,11 @@
-import { useCart } from '@/entities/cart'
+import { useCartStore } from '@/entities/cart'
 import css from './CartPage.module.scss'
 import { useMemo } from 'react'
 import { formatPrice } from '@/shared/helpers'
 import { CartProducts } from '@/widgets/CartProducts'
 
 export const CartPage = () => {
-  const { items: cartProducts } = useCart()
+  const { items: cartProducts } = useCartStore()
 
   const totalPrice = useMemo(() => {
     return cartProducts.reduce((prev, cur) => prev + cur.price_discount, 0)

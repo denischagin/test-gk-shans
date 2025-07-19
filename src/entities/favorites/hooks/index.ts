@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from '@/app/config'
 import { addToFavorites, removeFromFavorites } from '@/entities/favorites'
 import type { TProduct } from '@/entities/product'
 
-export const useFavorites = () => {
+export const useFavoritesStore = () => {
   const { items } = useAppSelector((state) => state.favorites)
   const dispatch = useAppDispatch()
 

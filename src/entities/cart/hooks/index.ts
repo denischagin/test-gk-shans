@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from '@/app/config'
 import { addToCart, removeFromCart } from '@/entities/cart'
 import type { TProduct } from '@/entities/product'
 
-export const useCart = () => {
+export const useCartStore = () => {
   const { items } = useAppSelector((state) => state.cart)
   const dispatch = useAppDispatch()
 

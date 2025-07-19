@@ -1,0 +1,17 @@
+.products {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+  &__items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    flex-grow: 1;
+
+    & > input {
+      width: 80%;
+    }
+  }
+}

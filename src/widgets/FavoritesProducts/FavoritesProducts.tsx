@@ -1,10 +1,10 @@
-import { useFavorites } from '@/entities/favorites'
+import { useFavoritesStore } from '@/entities/favorites'
 import css from './FavoritesProducts.module.scss'
 import { Card } from '@/shared/ui'
 
 export const FavoritesProducts = () => {
   const { items: favoritesProducts, remove: removeFromFavorites } =
-    useFavorites()
+    useFavoritesStore()
 
   if (!favoritesProducts.length)
     return <p className="text--size-xl">Нет товаров в избранном</p>

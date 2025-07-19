@@ -1,34 +1,40 @@
-import { ProductCard, useFetchAllProductsQuery } from '@/entities/product'
+import {
+  ProductCard,
+  useFetchAllProductsQuery,
+  type TProduct,
+} from '@/entities/product'
 import css from './ProductsList.module.scss'
-import { useMemo } from 'react'
-import { useCart } from '@/entities/cart'
-import { useFavorites } from '@/entities/favorites'
+import { useCartStore } from '@/entities/cart'
+import { useFavoritesStore } from '@/entities/favorites'
+import { useCartFavoritesProducts } from './ProductsList.hooks'
+import { useFilters } from '@/shared/hooks'
+import { useFiltersProductStore } from '@/entities/filters-product'
 
 export const ProductsList = () => {
   const { data: productsList, isError, isLoading } = useFetchAllProductsQuery()
+  const { items: productsFilters } = useFiltersProductStore()
 
   const {
     items: favoritesProducts,
     add: addToFavorites,
     remove: removeFromFavorites,
-  } = useFavorites()
+  } = useFavoritesStore()
   const {
     items: cartProducts,
     add: addToCart,
     remove: removeFromCart,
-  } = useCart()
+  } = useCartStore()
 
-  const favoritesCartProducts = useMemo(() => {
-    if (!productsList) return undefined
+  const filteredProducts = useFilters<TProduct>(
+    productsList?.items,
+    productsFilters,
+  )
 
-    return productsList.items.map((product) => {
-      const inCart = cartProducts.some((item) => item.id === product.id)
-      const inFavorites = favoritesProducts.some(
-        (item) => item.id === product.id,
-      )
-      return { ...product, inCart, inFavorites }
-    })
-  }, [productsList, cartProducts, favoritesProducts])
+  const favoritesCartProducts = useCartFavoritesProducts({
+    cartProducts,
+    favoritesProducts,
+    productsList: filteredProducts,
+  })
 
   return (
     <>
@@ -36,7 +42,7 @@ export const ProductsList = () => {
         {isError && (
           <p className="text--size-xl">Возникла ошибка при загрузке каталога</p>
         )}
-        {!!productsList && !productsList.items.length && (
+        {!!favoritesCartProducts && !favoritesCartProducts.length && (
           <p className="text--size-xl">Нет товаров</p>
         )}
         {isLoading && <p className="text--size-xl">Загрузка товаров...</p>}

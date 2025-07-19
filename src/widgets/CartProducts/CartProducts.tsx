@@ -1,9 +1,9 @@
-import { useCart } from '@/entities/cart'
+import { useCartStore } from '@/entities/cart'
 import css from './CartProducts.module.scss'
 import { Card } from '@/shared/ui'
 
 export const CartProducts = () => {
-  const { items: cartProducts, remove: removeFromCart } = useCart()
+  const { items: cartProducts, remove: removeFromCart } = useCartStore()
 
   if (!cartProducts.length)
     return <p className="text--size-xl">Нет товаров в корзине</p>
