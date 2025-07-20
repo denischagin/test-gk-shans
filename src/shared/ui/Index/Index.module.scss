@@ -1,0 +1,21 @@
+@import '/src/app/styles/variables.scss';
+
+.index {
+  position: relative;
+
+  &__item {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 2px;
+    background-color: map-get($colors, secondary-dark);
+    color: white;
+    width: 20px;
+    height: 20px;
+    font-size: 0.8rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+}
