@@ -1,6 +1,7 @@
 import { cartSlice } from '@/entities/cart'
 import { favoritesSlice } from '@/entities/favorites'
 import { filtersSlice } from '@/entities/filters-product'
+import { sortSlice } from '@/entities/sort-product/store'
 import { baseApi } from '@/shared/api'
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import {
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   [cartSlice.reducerPath]: cartSlice.reducer,
   [favoritesSlice.reducerPath]: favoritesSlice.reducer,
   [filtersSlice.reducerPath]: filtersSlice.reducer,
+  [sortSlice.reducerPath]: sortSlice.reducer,
 })
 
 export const store = configureStore({

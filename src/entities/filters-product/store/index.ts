@@ -5,11 +5,12 @@ import type {
 import type { TProduct } from '@/entities/product'
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 
-const initialState: TFiltersProductStore = {
+export const DEFAULT_FILTERS_STATE: TFiltersProductStore = {
   available: { contains: true },
-  price_discount: {},
+  price_discount: { min: 0, max: 99999 },
 }
 
+const initialState = DEFAULT_FILTERS_STATE
 export const filtersSlice = createSlice({
   initialState,
   name: 'filters',

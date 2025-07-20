@@ -1,12 +1,4 @@
 .filters {
-  background: #fff;
-  border-radius: 8px;
-  padding: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  height: 100%;
-  position: sticky;
-  top: 50px;
-  right: 0;
   display: flex;
   flex-direction: column;
 }
@@ -54,17 +46,8 @@
   gap: 2px;
 }
 
-.price-range__input {
+input.price-range__input {
   width: 90px;
-  padding: 4px 6px;
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
-  font-size: 14px;
-
-  &:focus {
-    outline: none;
-    border-color: #1ea2a9;
-  }
 }
 
 .price-range__separator {

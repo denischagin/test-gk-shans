@@ -9,10 +9,15 @@ import { useFavoritesStore } from '@/entities/favorites'
 import { useCartFavoritesProducts } from './ProductsList.hooks'
 import { useFilters } from '@/shared/hooks'
 import { useFiltersProductStore } from '@/entities/filters-product'
+import { useSort } from '@/shared/hooks/useSort'
+import { useSortProductStore } from '@/entities/sort-product'
 
 export const ProductsList = () => {
   const { data: productsList, isError, isLoading } = useFetchAllProductsQuery()
   const { items: productsFilters } = useFiltersProductStore()
+  const {
+    item: { current: sort },
+  } = useSortProductStore()
 
   const {
     items: favoritesProducts,
@@ -30,11 +35,19 @@ export const ProductsList = () => {
     productsFilters,
   )
 
+  const sortProducts = useSort<TProduct>(
+    filteredProducts,
+    sort.field,
+    sort.direction,
+  )
+
   const favoritesCartProducts = useCartFavoritesProducts({
     cartProducts,
     favoritesProducts,
-    productsList: filteredProducts,
+    productsList: sortProducts,
   })
+
+  console.log(sortProducts)
 
   return (
     <>
@@ -48,6 +61,7 @@ export const ProductsList = () => {
         {isLoading && <p className="text--size-xl">Загрузка товаров...</p>}
         {favoritesCartProducts?.map((productItem) => (
           <ProductCard
+            key={productItem.id}
             onRemoveFromFavorites={removeFromFavorites}
             onAddToFavorites={addToFavorites}
             onRemoveFromCart={removeFromCart}

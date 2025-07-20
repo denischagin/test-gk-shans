@@ -1,7 +1,7 @@
 import type { TFilters } from '@/shared/types'
 import { useMemo } from 'react'
 
-export const useFilters = <T extends Record<string, any>>(
+export const useFilters = <T extends Record<string, unknown>>(
   items: T[] | undefined,
   filters: TFilters<T>,
 ) => {
@@ -10,10 +10,10 @@ export const useFilters = <T extends Record<string, any>>(
       return Object.entries(filters).every(([key, filterItem]) => {
         const field = item[key]
 
-        if (filterItem?.min !== undefined && field <= filterItem.min) {
+        if (filterItem?.min !== undefined && Number(field) <= filterItem.min) {
           return false
         }
-        if (filterItem?.max !== undefined && field >= filterItem.max) {
+        if (filterItem?.max !== undefined && Number(field) >= filterItem.max) {
           return false
         }
         if (

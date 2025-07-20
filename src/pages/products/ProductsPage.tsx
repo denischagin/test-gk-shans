@@ -13,7 +13,9 @@ export const ProductsPage = () => {
         <ProductsList />
       </div>
 
-      <Filters />
+      <div className={css.panel}>
+        <Filters />
+      </div>
     </div>
   )
 }

@@ -16,7 +16,10 @@ export const Header = () => {
         <nav className={css.menu}>
           <ul className={css['menu__list']}>
             {links.map(({ title, to }) => (
-              <li className={css['menu__item']}>
+              <li
+                className={css['menu__item']}
+                key={to}
+              >
                 <NavLink
                   to={to}
                   className={({ isActive }) =>

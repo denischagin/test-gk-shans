@@ -11,7 +11,7 @@ export const CartProducts = () => {
   return (
     <div className={css.list}>
       {cartProducts.map((product) => (
-        <Card>
+        <Card key={product.id}>
           <Card.Img
             src={product.preview_picture}
             alt={product.name}

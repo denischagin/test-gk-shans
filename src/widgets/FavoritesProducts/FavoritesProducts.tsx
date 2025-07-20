@@ -12,7 +12,7 @@ export const FavoritesProducts = () => {
   return (
     <div className={css.list}>
       {favoritesProducts.map((product) => (
-        <Card>
+        <Card key={product.id}>
           <Card.Img
             src={product.preview_picture}
             alt={product.name}

@@ -120,6 +120,12 @@
     }
   }
 
+  &--size-small {
+    padding: 4px map-get($spacing, 1);
+    font-size: 14px;
+    border-radius: 6px;
+  }
+
   &--size-large {
     padding: map-get($spacing, 3);
     font-size: 16px;
