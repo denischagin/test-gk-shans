@@ -55,8 +55,6 @@ export const ProductsList = () => {
     productsList: searchProducts,
   })
 
-  console.log(sortProducts)
-
   return (
     <>
       <div className={css.list}>

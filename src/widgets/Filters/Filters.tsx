@@ -54,7 +54,11 @@ export const Filters = () => {
             }
             value={filterItems['price_discount']?.min ?? ''}
             onChange={(e) =>
-              changeFilters('price_discount', { min: e.target.valueAsNumber })
+              changeFilters('price_discount', {
+                min: Number.isNaN(e.target.valueAsNumber)
+                  ? undefined
+                  : e.target.valueAsNumber,
+              })
             }
           />
           <span className={css['price-range__separator']}>-</span>
@@ -67,7 +71,11 @@ export const Filters = () => {
             }
             value={filterItems['price_discount']?.max ?? ''}
             onChange={(e) =>
-              changeFilters('price_discount', { max: e.target.valueAsNumber })
+              changeFilters('price_discount', {
+                max: Number.isNaN(e.target.valueAsNumber)
+                  ? undefined
+                  : e.target.valueAsNumber,
+              })
             }
           />
         </div>

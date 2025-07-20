@@ -56,7 +56,7 @@ Card.Title = ({
   title: string
   maxLength?: number
 }) => (
-  <h3 className="text--size-md">
+  <h3 className={css.card__title + ' text--size-md'}>
     {title.length > maxLength ? `${title.slice(0, maxLength)}...` : title}
   </h3>
 )
