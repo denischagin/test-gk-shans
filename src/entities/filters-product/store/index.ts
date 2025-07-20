@@ -10,7 +10,10 @@ export const DEFAULT_FILTERS_STATE: TFiltersProductStore = {
   price_discount: { min: 0, max: 99999 },
 }
 
-const initialState = DEFAULT_FILTERS_STATE
+const initialState = {
+  filters: DEFAULT_FILTERS_STATE,
+  search: '',
+}
 export const filtersSlice = createSlice({
   initialState,
   name: 'filters',
@@ -23,16 +26,19 @@ export const filtersSlice = createSlice({
       }>,
     ) => {
       const field = action.payload.field
-      if (state[field] === undefined) {
-        state[field] = action.payload.item
+      if (state.filters[field] === undefined) {
+        state.filters[field] = action.payload.item
       } else {
-        state[field] = {
-          ...state[field],
+        state.filters[field] = {
+          ...state.filters[field],
           ...action.payload.item,
         }
       }
     },
+    changeSearch: (state, action: PayloadAction<string>) => {
+      state.search = action.payload
+    },
   },
 })
 
-export const { changeFilter } = filtersSlice.actions
+export const { changeFilter, changeSearch } = filtersSlice.actions

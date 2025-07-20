@@ -7,10 +7,15 @@ import css from './ProductsList.module.scss'
 import { useCartStore } from '@/entities/cart'
 import { useFavoritesStore } from '@/entities/favorites'
 import { useCartFavoritesProducts } from './ProductsList.hooks'
-import { useFilters } from '@/shared/hooks'
-import { useFiltersProductStore } from '@/entities/filters-product'
+import { useFilters, useSearch } from '@/shared/hooks'
+import {
+  useFiltersProductStore,
+  useSearchProductStore,
+} from '@/entities/filters-product'
 import { useSort } from '@/shared/hooks/useSort'
 import { useSortProductStore } from '@/entities/sort-product'
+
+const searchFields: (keyof TProduct)[] = ['name']
 
 export const ProductsList = () => {
   const { data: productsList, isError, isLoading } = useFetchAllProductsQuery()
@@ -18,6 +23,7 @@ export const ProductsList = () => {
   const {
     item: { current: sort },
   } = useSortProductStore()
+  const { search } = useSearchProductStore()
 
   const {
     items: favoritesProducts,
@@ -41,10 +47,12 @@ export const ProductsList = () => {
     sort.direction,
   )
 
+  const searchProducts = useSearch<TProduct>(sortProducts, searchFields, search)
+
   const favoritesCartProducts = useCartFavoritesProducts({
     cartProducts,
     favoritesProducts,
-    productsList: sortProducts,
+    productsList: searchProducts,
   })
 
   console.log(sortProducts)
