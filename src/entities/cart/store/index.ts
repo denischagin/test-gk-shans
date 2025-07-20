@@ -1,9 +1,10 @@
-import type { TCartStore } from '@/entities/cart'
+import { CartStorageService } from '@/entities/cart/services'
+import type { TCartStore } from '@/entities/cart/types'
 import type { TProduct } from '@/entities/product'
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 
 const initialState: TCartStore = {
-  items: [],
+  items: CartStorageService.getFromLS(),
 }
 
 export const cartSlice = createSlice({

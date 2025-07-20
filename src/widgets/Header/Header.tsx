@@ -1,14 +1,25 @@
 import { NavLink } from 'react-router'
 import css from './Header.module.scss'
 import { PATHS } from '@/shared/constants'
-
-const links = [
-  { title: 'Каталог', to: PATHS.products },
-  { title: 'Избранное', to: PATHS.favorites },
-  { title: 'Корзина', to: PATHS.cart },
-]
+import { useFavoritesStore } from '@/entities/favorites'
+import { useCartStore } from '@/entities/cart'
 
 export const Header = () => {
+  const { items: cart } = useCartStore()
+  const { items: favorites } = useFavoritesStore()
+
+  const links = [
+    { title: 'Каталог', to: PATHS.products },
+    {
+      title: 'Избранное' + (favorites.length ? ` (${favorites.length})` : ''),
+      to: PATHS.favorites,
+    },
+    {
+      title: 'Корзина' + (cart.length ? ` (${cart.length})` : ''),
+      to: PATHS.cart,
+    },
+  ]
+
   return (
     <header className={css.header}>
       <div className={css.header__container + ' container'}>

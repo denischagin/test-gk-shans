@@ -9,10 +9,15 @@
     align-items: center;
     gap: 10px;
     flex-grow: 1;
+    position: relative;
+  }
 
-    & > input {
-      width: 80%;
-    }
+  & &__search {
+    width: 80%;
+    position: sticky;
+    top: 40px;
+    left: 0;
+    background-color: white;
   }
 }
 

@@ -1,3 +1,4 @@
+import { cartMiddlware, favoritesMiddlware } from './middlewares'
 import { cartSlice } from '@/entities/cart'
 import { favoritesSlice } from '@/entities/favorites'
 import { filtersSlice } from '@/entities/filters-product'
@@ -21,7 +22,11 @@ const rootReducer = combineReducers({
 export const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(baseApi.middleware),
+    getDefaultMiddleware().concat(
+      baseApi.middleware,
+      cartMiddlware.middleware,
+      favoritesMiddlware.middleware,
+    ),
 })
 
 export type RootState = ReturnType<typeof rootReducer>

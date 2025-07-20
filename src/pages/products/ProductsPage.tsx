@@ -10,7 +10,7 @@ export const ProductsPage = () => {
     <div className={css.products + ' container'}>
       <div className={css.products__items}>
         <input
-          className="input input--var-outlined"
+          className={'input input--var-outlined ' + css.products__search}
           placeholder="Поиск товаров..."
           onChange={(e) => changeSearch(e.target.value)}
         />

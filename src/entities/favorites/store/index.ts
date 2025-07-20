@@ -1,9 +1,10 @@
-import type { TFavoritesStore } from '@/entities/favorites'
+import { type TFavoritesStore } from '@/entities/favorites'
+import { FavoritesStorageService } from '@/entities/favorites/services'
 import type { TProduct } from '@/entities/product'
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 
 const initialState: TFavoritesStore = {
-  items: [],
+  items: FavoritesStorageService.getFromLS(),
 }
 
 export const favoritesSlice = createSlice({
