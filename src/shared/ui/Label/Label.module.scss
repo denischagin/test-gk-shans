@@ -1,0 +1,17 @@
+@import '/src/app/styles/variables.scss';
+
+.label {
+  display: inline;
+  padding: 2px 7px;
+  border-radius: 5px;
+
+  &--discount {
+    background-color: map-get($colors, danger);
+    color: white;
+  }
+
+  &--new {
+    background-color: map-get($colors, success);
+    color: white;
+  }
+}

@@ -43,4 +43,9 @@
     font-size: 0.7rem;
     text-decoration: line-through;
   }
+
+  &__labels {
+    display: flex;
+    gap: 4px;
+  }
 }

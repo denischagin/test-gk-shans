@@ -7,7 +7,7 @@ import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 
 export const DEFAULT_FILTERS_STATE: TFiltersProductStore = {
   available: { contains: true },
-  price_discount: { min: 0, max: 99999 },
+  price_discount: { min: 0, max: 1000000 },
 }
 
 const initialState = {

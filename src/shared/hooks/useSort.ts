@@ -15,8 +15,6 @@ export const useSort = <T extends Record<string, unknown>>(
       const firstField = first[field]
       const secondField = second[field]
 
-      console.log(firstField)
-
       if (typeof firstField === 'string' && typeof secondField === 'string') {
         return firstField.localeCompare(secondField)
       }

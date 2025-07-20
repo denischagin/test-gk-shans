@@ -1,6 +1,6 @@
 import React from 'react'
 import type { TProduct } from '@/entities/product'
-import { Card } from '@/shared/ui'
+import { Card, Label } from '@/shared/ui'
 
 export type ProductCardProps = TProduct & {
   inCart: boolean
@@ -30,12 +30,20 @@ export const ProductCard: React.FC<ProductCardProps> = (props) => {
       />
 
       <Card.Content>
+        <Card.Labels>
+          {Object.entries(product.labels).map(([labelValue, labelText]) => (
+            <Label variant={labelValue}>{labelText}</Label>
+          ))}
+        </Card.Labels>
         <Card.Price
           price={product.price}
           discountPrice={product.price_discount}
         />
 
-        <Card.Title title={product.name} />
+        <Card.Title
+          title={product.name}
+          to={`${product.id}`}
+        />
 
         <Card.Actions>
           {!product.available && (

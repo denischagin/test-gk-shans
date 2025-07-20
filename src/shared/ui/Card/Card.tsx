@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { type PropsWithChildren } from 'react'
 import css from './Card.module.scss'
+import productImage from '@/shared/images/product.webp'
+import { NavLink } from 'react-router'
 
 export type CardProps = {
   children: React.ReactNode
@@ -12,7 +14,7 @@ export const Card = ({ children, className = '' }: CardProps) => {
 
 Card.Img = ({ src, alt }: { src: string | undefined; alt: string }) => (
   <img
-    src={src || ''}
+    src={src || productImage}
     alt={alt}
     className={css.card__preview}
   />
@@ -52,15 +54,23 @@ Card.Price = ({
 Card.Title = ({
   title,
   maxLength = 40,
+  to,
 }: {
   title: string
   maxLength?: number
+  to: string
 }) => (
-  <h3 className={css.card__title + ' text--size-md'}>
-    {title.length > maxLength ? `${title.slice(0, maxLength)}...` : title}
-  </h3>
+  <NavLink to={to}>
+    <h3 className={css.card__title + ' text--size-md'}>
+      {title.length > maxLength ? `${title.slice(0, maxLength)}...` : title}
+    </h3>
+  </NavLink>
 )
 
 Card.Actions = ({ children }: { children: React.ReactNode }) => (
   <div className={css.card__actions}>{children}</div>
 )
+
+Card.Labels = ({ children }: PropsWithChildren) => {
+  return <div className={css.card__labels}>{children}</div>
+}

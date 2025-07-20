@@ -1,5 +1,5 @@
 import { AppLayout } from '@/app/ui'
-import { CartPage, FavoritesPage, ProductsPage } from '@/pages'
+import { CartPage, FavoritesPage, ProductCardPage, ProductsPage } from '@/pages'
 import { PATHS } from '@/shared/constants'
 import type { FC } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
@@ -22,6 +22,7 @@ export const AppRouter: FC = () => {
           path: PATHS.favorites,
           element: <FavoritesPage />,
         },
+        { path: PATHS.products + '/:productId', element: <ProductCardPage /> },
       ],
     },
   ])

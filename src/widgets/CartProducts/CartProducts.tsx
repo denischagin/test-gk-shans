@@ -1,6 +1,7 @@
 import { useCartStore } from '@/entities/cart'
 import css from './CartProducts.module.scss'
-import { Card } from '@/shared/ui'
+import { Card, Label } from '@/shared/ui'
+import { PATHS } from '@/shared/constants'
 
 export const CartProducts = () => {
   const { items: cartProducts, remove: removeFromCart } = useCartStore()
@@ -18,12 +19,26 @@ export const CartProducts = () => {
           />
 
           <Card.Content>
+            <Card.Labels>
+              {Object.entries(product.labels).map(([labelValue, labelText]) => (
+                <Label
+                  key={labelValue}
+                  variant={labelValue}
+                >
+                  {labelText}
+                </Label>
+              ))}
+            </Card.Labels>
+
             <Card.Price
               price={product.price}
               discountPrice={product.price_discount}
             />
 
-            <Card.Title title={product.name} />
+            <Card.Title
+              title={product.name}
+              to={`${PATHS.products}/${product.id}`}
+            />
 
             <Card.Actions>
               <button
