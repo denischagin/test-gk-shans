@@ -23,6 +23,14 @@ export const AppRouter: FC = () => {
           element: <FavoritesPage />,
         },
         { path: PATHS.products + '/:productId', element: <ProductCardPage /> },
+        {
+          path: '*',
+          element: (
+            <div className="container">
+              <h1 className="text--size-3xl">Страница не найдена</h1>
+            </div>
+          ),
+        },
       ],
     },
   ])

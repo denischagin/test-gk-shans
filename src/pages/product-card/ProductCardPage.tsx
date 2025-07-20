@@ -5,9 +5,10 @@ import { Label } from '@/shared/ui'
 import { useMemo } from 'react'
 import { useCartStore } from '@/entities/cart'
 import { useFavoritesStore } from '@/entities/favorites'
+import image from '@/shared/images/product.webp'
 
 export const ProductCardPage = () => {
-  const { data: productsList } = useFetchAllProductsQuery()
+  const { data: productsList, isLoading } = useFetchAllProductsQuery()
   const { productId } = useParams()
   const { items: cart, add: addToCart, remove: removeFromCart } = useCartStore()
   const {
@@ -26,7 +27,18 @@ export const ProductCardPage = () => {
     return favorites.find((item) => item.id === Number(productId))
   }, [favorites, productId])
 
-  if (!product) return <div>Не найден продукт</div>
+  if (isLoading)
+    return (
+      <div className={css.loading}>
+        <p className="text--size-3xl">Загрузка товаров...</p>
+      </div>
+    )
+  if (!product)
+    return (
+      <div className={css.loading}>
+        <p className="text--size-3xl">Товар не найден</p>
+      </div>
+    )
 
   const {
     name,
@@ -43,7 +55,7 @@ export const ProductCardPage = () => {
         <div className={css.product__container}>
           <img
             className={css.product__image}
-            src={preview_picture}
+            src={preview_picture ?? image}
             alt={name}
           />
 

@@ -1,5 +1,10 @@
 @import '/src/app/styles/variables.scss';
 
+.loading {
+  display: flex;
+  justify-content: center;
+}
+
 .product {
   display: flex;
   align-items: center;
@@ -11,27 +16,29 @@
   }
 
   &__image {
-    width: 400px;
-    height: 400px;
+    width: 350px;
+    height: 350px;
     object-fit: contain;
   }
 
   &__container {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
   }
 
   &__price-container {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 14px;
   }
 
   &__actions {
     display: flex;
     gap: 8px;
-    margin-bottom: 30px;
+    margin-bottom: 24px;
   }
 
   &__labels {
@@ -43,10 +50,12 @@
   &__info {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 0.5rem;
     padding: 3rem 2rem;
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.161);
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.173);
     border-radius: 10px;
+    width: 100%;
   }
 
   &__name {
