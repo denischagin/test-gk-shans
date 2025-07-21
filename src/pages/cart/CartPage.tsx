@@ -15,13 +15,13 @@ export const CartPage = () => {
     <div className={css.cart + ' container'}>
       <CartProducts />
 
-      <div className={css.cart__panel}>
+      <aside className={css.cart__panel}>
         <div>
           <p className="text--size-xl">Итого к оплате:</p>
           <p className="text--size-xl">{formatPrice(totalPrice)}</p>
         </div>
         <button className="button button--var-filled">Купить</button>
-      </div>
+      </aside>
     </div>
   )
 }

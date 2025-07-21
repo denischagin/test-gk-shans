@@ -4,22 +4,24 @@ import { Filters } from '@/widgets/Filters'
 import { useSearchProductStore } from '@/entities/filters-product'
 
 export const ProductsPage = () => {
-  const { change: changeSearch } = useSearchProductStore()
+  const { search, change: changeSearch } = useSearchProductStore()
 
   return (
     <div className={css.products + ' container'}>
-      <div className={css.products__items}>
+      <section className={css.products__items}>
         <input
           className={'input input--var-outlined ' + css.products__search}
           placeholder="Поиск товаров..."
           onChange={(e) => changeSearch(e.target.value)}
+          type="search"
+          value={search}
         />
         <ProductsList />
-      </div>
+      </section>
 
-      <div className={css.panel}>
+      <aside className={css.panel}>
         <Filters />
-      </div>
+      </aside>
     </div>
   )
 }

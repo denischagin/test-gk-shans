@@ -57,7 +57,7 @@ export const ProductsList = () => {
 
   return (
     <>
-      <div className={css.list}>
+      <div className={css.products}>
         {isError && (
           <p className="text--size-xl">Возникла ошибка при загрузке каталога</p>
         )}
@@ -65,16 +65,18 @@ export const ProductsList = () => {
           <p className="text--size-xl">Нет товаров</p>
         )}
         {isLoading && <p className="text--size-xl">Загрузка товаров...</p>}
-        {favoritesCartProducts?.map((productItem) => (
-          <ProductCard
-            key={productItem.id}
-            onRemoveFromFavorites={removeFromFavorites}
-            onAddToFavorites={addToFavorites}
-            onRemoveFromCart={removeFromCart}
-            onAddToCart={addToCart}
-            {...productItem}
-          />
-        ))}
+        <ul className={css.products__list}>
+          {favoritesCartProducts?.map((productItem) => (
+            <ProductCard
+              key={productItem.id}
+              onRemoveFromFavorites={removeFromFavorites}
+              onAddToFavorites={addToFavorites}
+              onRemoveFromCart={removeFromCart}
+              onAddToCart={addToCart}
+              {...productItem}
+            />
+          ))}
+        </ul>
       </div>
     </>
   )

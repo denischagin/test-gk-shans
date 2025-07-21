@@ -10,7 +10,7 @@ export const CartProducts = () => {
     return <p className="text--size-xl">Нет товаров в корзине</p>
 
   return (
-    <div className={css.list}>
+    <ul className={css.list}>
       {cartProducts.map((product) => (
         <Card key={product.id}>
           <Card.Img
@@ -42,7 +42,7 @@ export const CartProducts = () => {
 
             <Card.Actions>
               <button
-                className="button button--var-outlined"
+                className="button button--var-outlined button--size-small"
                 onClick={() => removeFromCart(product.id)}
               >
                 Удалить из корзины
@@ -51,6 +51,6 @@ export const CartProducts = () => {
           </Card.Content>
         </Card>
       ))}
-    </div>
+    </ul>
   )
 }

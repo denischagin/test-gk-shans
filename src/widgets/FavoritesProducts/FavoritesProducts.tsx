@@ -11,7 +11,7 @@ export const FavoritesProducts = () => {
     return <p className="text--size-xl">Нет товаров в избранном</p>
 
   return (
-    <div className={css.list}>
+    <ul className={css.list}>
       {favoritesProducts.map((product) => (
         <Card key={product.id}>
           <Card.Img
@@ -42,7 +42,7 @@ export const FavoritesProducts = () => {
 
             <Card.Actions>
               <button
-                className="button button--var-outlined"
+                className="button button--var-outlined button--size-small"
                 onClick={() => removeFromFavorites(product.id)}
               >
                 Удалить из избранного
@@ -51,6 +51,6 @@ export const FavoritesProducts = () => {
           </Card.Content>
         </Card>
       ))}
-    </div>
+    </ul>
   )
 }

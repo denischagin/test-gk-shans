@@ -9,7 +9,7 @@ export type CardProps = {
 }
 
 export const Card = ({ children, className = '' }: CardProps) => {
-  return <article className={`${css.card} ${className}`}>{children}</article>
+  return <li className={`${css.card} ${className}`}>{children}</li>
 }
 
 Card.Img = ({ src, alt }: { src: string | undefined; alt: string }) => (
@@ -60,8 +60,11 @@ Card.Title = ({
   maxLength?: number
   to: string
 }) => (
-  <NavLink to={to}>
-    <h3 className={css.card__title + ' text--size-md'}>
+  <NavLink
+    to={to}
+    className={css.card__title}
+  >
+    <h3 className={'text--size-md'}>
       {title.length > maxLength ? `${title.slice(0, maxLength)}...` : title}
     </h3>
   </NavLink>
@@ -72,5 +75,5 @@ Card.Actions = ({ children }: { children: React.ReactNode }) => (
 )
 
 Card.Labels = ({ children }: PropsWithChildren) => {
-  return <div className={css.card__labels}>{children}</div>
+  return <ul className={css.card__labels}>{children}</ul>
 }

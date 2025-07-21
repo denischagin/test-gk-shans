@@ -1,4 +1,4 @@
-import { useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import css from './ProductCardPage.module.scss'
 import { useFetchAllProductsQuery } from '@/entities/product'
 import { Label } from '@/shared/ui'
@@ -16,13 +16,16 @@ export const ProductCardPage = () => {
     add: addToFavorites,
     remove: removeFromFavorites,
   } = useFavoritesStore()
+  const navigate = useNavigate()
 
   const product = useMemo(() => {
     return productsList?.items.find((item) => item.id === Number(productId))
   }, [productsList, productId])
+
   const inCart = useMemo(() => {
     return cart.find((item) => item.id === Number(productId))
   }, [cart, productId])
+
   const inFavorites = useMemo(() => {
     return favorites.find((item) => item.id === Number(productId))
   }, [favorites, productId])
@@ -49,8 +52,24 @@ export const ProductCardPage = () => {
     labels,
   } = product
 
+  const handleCartClick = () => {
+    inCart ? removeFromCart(product.id) : addToCart(product)
+  }
+  const handleFavoritesClick = () => {
+    inFavorites ? removeFromFavorites(product.id) : addToFavorites(product)
+  }
+  const handleClickBack = () => {
+    navigate(-1)
+  }
+
   return (
     <div className={css.product}>
+      <button
+        className={'button button--var-text ' + css.product__back}
+        onClick={handleClickBack}
+      >
+        Назад
+      </button>
       <div className="container">
         <div className={css.product__container}>
           <img
@@ -91,9 +110,7 @@ export const ProductCardPage = () => {
                     'button button--var-filled button--size-medium ' +
                     (inCart ? 'button_disabled' : '')
                   }
-                  onClick={() =>
-                    inCart ? removeFromCart(product.id) : addToCart(product)
-                  }
+                  onClick={handleCartClick}
                 >
                   {inCart ? 'В корзине' : 'В корзину'}
                 </button>
@@ -104,11 +121,7 @@ export const ProductCardPage = () => {
                     'button button--var-text button--size-medium ' +
                     (inFavorites ? 'button_disabled' : '')
                   }
-                  onClick={() =>
-                    inFavorites
-                      ? removeFromFavorites(product.id)
-                      : addToFavorites(product)
-                  }
+                  onClick={handleFavoritesClick}
                 >
                   {inFavorites ? 'В избранном' : 'В избранное'}
                 </button>

@@ -1,3 +1,7 @@
+div.cart {
+  padding-top: 20px;
+}
+
 .cart {
   display: flex;
   justify-content: space-between;
@@ -18,7 +22,7 @@
     top: 60px;
     height: 100%;
     background-color: white;
-    width: 300px;
+    min-width: 200px;
     @media screen and (max-width: 700px) {
       position: static;
     }
